@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de contacto</title>
+    <link rel="stylesheet" href="/Parte1/styles.css">
+</head>
+
+
+
+
+<body>
+
+
+    <main class="form-page">
+
+        <section class="form-section">
+
+            <div class="form-container">
+
+                <header class="form-header">
+
+
+                    <span class="eyebrow"> CONTACTO </span>
+                    <h1> Cuéntenos sobre su necesidad </h1>
+                    <p> Complete el formulario. Los campos con * son obligatorios </p>
+
+
+                </header>
+
+                <form class="contact-form" action="#" method="post">
+
+                    <!-- Datos Personales -->
+                    <h2> Datos Personales </h2>
+                    <div class="form-grid">
+
+
+
+
+                        <!-- Controles y/o etiquetas del formulario -->
+
+                        <div class="form-field">
+
+
+                            <label for="nombre"> Nombre <span class="required-mark" aria-hidden="true">*</span>
+
+                            </label>
+
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej. Laura Martínez"
+                                autocomplete="name" required>
+                        </div>
+
+                        <div class="form-field">
+
+                            <label for="apellido"> Apellido <span class="required-mark" aria-hidden="true">*</span>
+                            </label>
+                            <input type="text" id="apellido" name="apellido" placeholder="Ej. Fernandez Gonzales"
+                                autocomplete="family-name" required>
+
+
+
+                        </div>
+
+
+
+                        <div class="form-field">
+                            <label for="email">
+                                Correo <span class="required-mark" aria-hidden="true">*</span>
+                            </label>
+
+                            <input type="email" id="email" name="email" placeholder="nombre@empresa.com"
+                                autocomplete="email" required>
+                        </div>
+
+
+
+
+                        <div class="form-field">
+                            <label for="telefono"> Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="+57 300 000 0000"
+                                autocomplete="tel">
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <!--Organización-->
+                    <h2> Organización </h2>
+                    <div class="form-grid">
+
+
+
+                        <div class="form-field">
+                            <label for="empresa"> Empresa </label>
+                            <input type="text" id="empresa" name="empresa">
+
+
+
+                        </div>
+
+                        <div class="form-field">
+                            <label for="empleados"> Número de empleados </label>
+                            <input type="number" id="empleados" name="empleados" min="1" max="100000" step="1">
+                        </div>
+
+                    </div>
+
+                    <div class="form-field">
+                        <label for="servicio"> 
+                            Servicio de interés <span class="required-mark" aria-hidden="true">*</span>
+                        </label>
+                        <select id="servicio" name="servicio" required>
+                            <option value="" selected disabled>
+                                Seleecione un servicio
+                            </option>
+
+                            <option value="pentesting">
+                                Pentesting
+                            </option>
+
+                            <option value="devsecops">
+                                DevSecOps
+                            </option>
+
+                            <option value="ai-security">
+                                AI Security
+                            </option>
+
+
+                        </select>
+
+                    </div>
+
+
+
+
+
+                    <!-- Disponibilidad -->
+                    <h2> Disponibilidad </h2>
+
+
+
+
+                    <div class="form-field">
+                        <label for="fecha">
+                            Fecha preferida
+                        </label>
+                        <input type="date" id="fecha" name="fecha">
+
+
+                    </div>
+
+                    <div class="form-field">
+                        <label for="hora"> Hora preferida </label>
+                        <input type="time" id="hora" name="hora">
+                    </div>
+
+
+                    <fieldset>
+                        <legend>
+                            Modalidad de contacto
+                        </legend>
+
+                        <div class="choice-list">
+                            <label class="choice">
+                                <input type="radio" name="modalidad" value="correo" checked>
+                                <span>Correo electrónico</span>
+                            </label>
+                            <label class="choice">
+                                <input type="radio" name="modalidad" value="telefono">
+                                <span>Teléfono</span>
+                            </label>
+                            <label class="choice">
+                                <input type="radio" name="modalidad" value="videollamada">
+                                <span>Videollamada</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+
+                    <fieldset>
+                        <legend>
+                            Temas adicionales de interés
+                        </legend>
+                        <div class="choice-list">
+                            <label class="choice">
+                                <input type="checkbox" name="temas" value="seguridad" checked>
+                                Seguridad de aplicaciones
+                            </label>
+                            <label class="choice">
+                                <input type="checkbox" name="temas" value="cloud">
+                                Cloud Security
+                            </label>
+                            <label class="choice">
+                                <input type="checkbox" name="temas" value="hacking">
+                                Hacking Etico
+                            </label>
+                        </div>
+                    </fieldset>
+
+
+
+                    <div class="form-field">
+                        <label for="mensaje">
+                            Describa su necesidad <span class="required-mark" aria-hidden="true">*</span>
+                        </label>
+                        <textarea id="mensaje" name="mensaje" rows="7" maxlength="1200" placeholder="Describa brevemente el contexto..." required></textarea>
+                        <small class="field-help"> Máximo 1200 caracteres.</small>
+
+                    </div>
+
+
+
+                    <div class="form-field">
+                        <label for="archivo"> Documento de soporte </label>
+                        <input type="file" id="archivo" name="archivo" accept=".pdf, .doc, .docx, .xlsx">
+                        <small class="field-help"> Formatos sugeridos: PDF, Word o Excel</small>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="checkbox" name="terminos" required>
+                            Acepto los términos y condiciones
+                        </label>
+                    </div>
+
+
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="button button-primary">
+                            Enviar solicitud
+                        </button>
+                        <button type="reset" class="button button-secondary">
+                            Limpiar
+                        </button>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                </form>
+
+            </div>
+
+
+
+
+        </section>
+
+
+
+
+    </main>
+
+
+
+
+</body>
+
+
+
+
+</html>
