@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+
+<!-- 
+    Ejercicio 1: crea un formulario de registro con nombre, correo, password y confirmación visual de 
+términos. 
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Formulario de resgistro </title>
+    <link rel="stylesheet" href="/Parte2/Ejercicio1/styles_ej1.css">
+</head>
+
+<body>
+
+    <form action="#" method="post">
+
+        <h1> Crear cuenta </h1>
+
+        <!-- Nombre -->
+        <div class="form-field">
+            <label for="nombre"> Nombre </label>
+            <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Ej. Laura Martínez"
+            autocomplete="name"
+            required    
+            >
+        </div>
+
+        <!-- Correo -->
+        <div class="form-field">
+            <label for="email"> Correo electronico </label>
+            <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="nombre@correo.com"
+            autocomplete="email"
+            required    
+            >
+        </div>        
+
+        <!-- Contraseña -->
+        <div class="form-field">
+            <label for="password"> Contraseña </label>
+            <input
+            type="password"
+            id="password"
+            name="password"
+            minlength="8"
+            autocomplete="new-password"
+            required    
+            >
+        </div>   
+
+        <div>
+            <label class="choice">
+                <input
+                type="checkbox" 
+                name="terminos" 
+                required> Acepto los términos y condiciones</label>
+        </div>
+
+        <div class="form-actions">
+
+            <button 
+            type="submit"
+            class="button button-primary"> Registrarme 
+
+            </button>
+            <button type="reset" class="button button-primary"> Limpiar </button>
+
+
+        </div>
+
+    </form>
+
+</body>
+
+</html>

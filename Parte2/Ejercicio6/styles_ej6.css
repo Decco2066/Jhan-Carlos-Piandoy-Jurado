@@ -1,0 +1,168 @@
+:root {
+    --primary: #c2410c;
+    --primary-hover: #9a3412;
+    --accent: #b45309;
+    --navy: #431407;
+    --text: #3f2a1d;
+    --muted: #8a7161;
+    --border: #e8d9c8;
+    --background: #ffffff;
+    --background-soft: #fdf6ec;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--background-soft);
+    color: var(--text);
+    padding: 40px 20px;
+}
+
+form {
+    max-width: 480px;
+    margin: 0 auto;
+    display: grid;
+    gap: 22px;
+    background: var(--background);
+    padding: 36px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    border-top: 4px solid var(--primary);
+    box-shadow: 0 20px 50px rgba(180, 83, 9, 0.08);
+}
+
+form h1 {
+    margin: 0 0 6px;
+    color: var(--navy);
+    font-size: 1.8rem;
+}
+
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-field {
+    display: grid;
+    gap: 8px;
+}
+
+.form-field label,
+fieldset legend {
+    color: var(--navy);
+    font-weight: 650;
+    font-size: .92rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #fffaf3;
+    color: var(--text);
+    font: inherit;
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #b8a595;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(194, 65, 12, 0.15);
+}
+
+/* Flecha del select en tono cálido */
+.form-field select {
+    appearance: none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+        linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 13px) 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 42px;
+}
+
+.choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.choice input {
+    margin-top: 3px;
+    accent-color: var(--primary);
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    padding-top: 4px;
+}
+
+.button {
+    min-height: 46px;
+    padding: 0 20px;
+    border-radius: var(--radius-sm);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.button-primary {
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: #fff;
+}
+
+.button-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.button-secondary {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--navy);
+}
+
+.button-secondary:hover {
+    background: var(--background-soft);
+}
+
+@media (max-width: 600px) {
+    form {
+        padding: 24px 20px;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<!-- 
+    Ejercicio 2: crea un formulario de reserva con fecha, hora, número de personas y comentarios. 
+-->
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Formulario reserva </title>
+    <link rel="stylesheet" href="/Parte2/Ejercicio1/styles_ej2.css">
+
+
+</head>
+
+
+<body>
+    <form action="#" method="post">
+
+        <h1> RESERVACION </h1>
+        <p>Reserva tu mesa y déjanos el resto.</p>
+
+        <!-- Datos-->
+
+        <div class="form-field">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Laura Martínez" required>
+        </div>
+        <div class="form-field">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+57 300 000 0000" required>
+        </div>
+
+
+
+
+
+        <!-- Fecha -->
+
+        <div class="form-field">
+            <label for="fecha"> Fecha de reservación </label>
+            <input type="date" id="fecha" name="fecha">
+
+        </div>
+
+        <!-- Hora-->
+        <div class="form-field">
+            <label for="hora"> Hora de reservación </label>
+            <input type="time" id="hora" name="hora">
+
+        </div>
+
+
+        <!-- Número de personas -->
+        <div class="form-field">
+            <label for="personas"> Número de personas </label>
+
+            <input type="number" id="personas" name="personas" min="1" max="100000" step="1">
+
+        </div>
+
+
+        <!-- Tipo de mesa -->
+        <div class="form-field">
+            <label for="mesa">Tipo de mesa</label>
+            <select id="mesa" name="mesa" required>
+                <option value="" selected disabled>Seleccione una opción</option>
+                <option value="interior">Interior</option>
+                <option value="terraza">Terraza</option>
+                <option value="privado">Salón privado</option>
+            </select>
+        </div>
+
+
+
+
+
+        <!-- Comentarios -->
+        <div class="form-field">
+
+            <label for="comentario"> Deja un comentario </label>
+            <textarea id="comentario" name="comentario" rows="7" maxlength="1200"> </textarea>
+
+
+
+        </div>
+
+        <!-- Política de reservación -->
+        <label class="choice">
+            <input type="checkbox" name="politica" id="politica" required>
+            <span> Acepto la política de cancelación (24h de anticipación)</span>
+
+        </label>
+
+
+        <!--Bótones-->
+        <div class="form-actions">
+
+            <button type="submit" class="button button-primary">
+                Registar reserva
+            </button>
+            <button type="reset" class="button button-secondary">
+                Limpiar
+            </button>
+        </div>
+
+    </form>
+
+</body>
+
+</html>
