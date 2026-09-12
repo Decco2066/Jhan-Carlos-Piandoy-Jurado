@@ -353,3 +353,20 @@ fieldset legend {
  line-height:
  1.5;
 }
+
+@media (max-width: 720px) {
+ .form-section {
+ padding:
+ 30px 14px;
+}
+ .form-container {
+ padding:
+ 26px 20px;
+ border-radius:
+ var(--radius-md);
+ }
+ .form-grid {
+ grid-template-columns:
+ 1fr;
+ }
+}
