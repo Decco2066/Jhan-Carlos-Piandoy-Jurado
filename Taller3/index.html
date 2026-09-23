@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Black Hole Studios: estudio independiente de desarrollo de videojuegos y publisher.">
+    <title>Inicio | Black Hole Studios</title>
+    <!-- Ruta relativa (sin "/" al inicio) para que funcione al abrir el archivo directamente -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+
+            <a class="brand" href="index.html">
+                <img src="img/logo.png" alt="Black Hole Studios" class="brand-logo">
+            </a>
+
+            <nav class="nav" aria-label="Navegación principal">
+                <a href="#company">Company</a>
+
+                <div class="dropdown">
+                    <a href="#games">Games</a>
+                    <div class="dropdown-menu">
+                        <a href="#juego-1">INTO THE ABYSS</a>
+                        <a href="#juego-2">RUSTED SOLID</a>
+                    </div>
+                </div>
+
+                <a href="#servicios">Services</a>
+                <a class="nav-cta" href="#contacto">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- =====================================================
+             2. HERO: imagen de fondo (se pone desde el CSS) + título
+             ===================================================== -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <h1>Black Hole Studios</h1>
+                    <p class="hero-description">Más allá del infinito.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             3. COMPANY (quiénes somos): texto a la izquierda, imagen a la derecha
+             ===================================================== -->
+        <section class="about" id="company">
+            <div class="container about-grid">
+
+                <div>
+                    <header class="section-heading">
+                        <h2>¿Quiénes somos?</h2>
+                        <p>Estudio independiente de desarrollo de videojuegos y publisher desde 2025.</p>
+                    </header>
+
+                </div>
+
+                <!-- Para poner la imagen real: reemplace el texto por <img src="img/estudio.jpg" alt="Descripción"> -->
+                <div class="about-visual">
+                    <img src="/Taller3/img/imagen1gif.gif" alt="Descripción">
+
+
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =====================================================
+             4. GAMES: una tarjeta por juego (los id coinciden con el menú desplegable)
+             ===================================================== -->
+        <section class="games" id="games">
+            <div class="container">
+
+                <header class="section-heading">
+                    <h2>Nuestros juegos</h2>
+                    <p>Sumérgete.</p>
+                </header>
+
+                <div class="games-grid">
+
+                    <article class="game-card" id="juego-1">
+                        <!-- Reemplace el texto por <img src="img/juego1.jpg" alt="Nombre del juego 1"> -->
+                        <div class="game-visual"> INTO THE ABYSS
+                            <img src="/Taller3/img/imagenjuego1.jpeg" alt="Nombre del juego 1">
+
+                        </div>
+                    </article>
+
+                    <article class="game-card" id="juego-2">
+                        <!-- Reemplace el texto por <img src="img/juego2.jpg" alt="Nombre del juego 2"> -->
+                        <div class="game-visual">RUSTED SOLID
+                            <img src="/Taller3/img/imagenjuego2.jpeg" alt="Nombre del juego 1">
+
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             5. SERVICES: cuatro tarjetas (Desarrollo enlaza a su página)
+             ===================================================== -->
+        <section class="services" id="servicios">
+            <div class="container">
+
+                <header class="section-heading">
+                    <h2>Qué hacemos</h2>
+                    <p>Creamos experiencias para cautivar a las personas y que puedan quedar inmersas en nuestros mundos.</p>
+                </header>
+
+                <div class="services-grid">
+
+                    <article class="service-card">
+                        <h3>Desarrollo</h3>
+                        <p>Creamos experiencias interactivas completas, desde la mecánica central hasta el lanzamiento en plataforma.</p>
+                        <!-- desarrollo.html se creará después; hasta entonces este enlace dará error -->
+                        <a class="card-link" href="desarrollo.html">Ver más</a>
+                    </article>
+
+                    <article class="service-card">
+                        <h3>Diseño</h3>
+                        <p>Construimos personajes con identidad y personalidad propia, coherentes con el mundo que habitan.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <h3>Arte</h3>
+                        <p>Diseñamos escenarios, paletas y universos visuales que sostienen la experiencia de principio a fin.</p>
+                    </article>
+
+                    <article class="service-card">
+                        <h3>Publisher</h3>
+                        <p>Acompañamos equipos externos en planeación, pipeline y decisiones de producción de sus propios proyectos.</p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+         6. FOOTER: contacto (el id="contacto" lo usa el botón Contact del menú)
+         ===================================================== -->
+    <footer class="footer" id="contacto">
+        <div class="container footer-grid">
+
+            <section>
+                <h3>Contacto</h3>
+                <p>black@hole.com</p>
+            </section>
+
+            <section>
+                <h3>Ubicación</h3>
+                <p>Colombia</p>
+            </section>
+
+            <section>
+                <h3>Síguenos</h3>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </section>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>
