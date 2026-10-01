@@ -1,4 +1,4 @@
-/* ===== Contacto — se carga DESPUÉS de styles.css ===== */
+
 
 :root {
     --danger: #d92d20;
@@ -70,7 +70,7 @@
             rgba(255, 255, 255, .96) 0%,
             rgba(255, 255, 255, .75) 45%,
             rgba(255, 255, 255, 0) 100%),
-        url("img/imagencontact.jpg") center / cover no-repeat;
+        url("/img/imagencontact.jpg") center / cover no-repeat;
 }
 
 .page-hero h1 {
