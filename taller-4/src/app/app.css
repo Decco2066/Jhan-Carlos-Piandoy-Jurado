@@ -1,0 +1,8 @@
+.contenedor {
+  background-color: #4472c4;
+  padding: 10px;
+}
+.medio {
+  display: flex;
+  gap: 10px;
+}

@@ -1,0 +1,75 @@
+:root {
+  --color-titulo: #ff4900;
+  --color-p1: #0093ff;
+  --color-p2: #c500ff;
+  --color-link: #001bff;
+  --color-link-visited: #4caf50;
+  --color-link-hover: #ff6600;
+  --color-th-bg: #000000;
+  --color-th-texto: #ffffff;
+  --color-fila-clara: #bec1c3;
+  --color-fila-central: #045795;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+h2 {
+  color: var(--color-titulo);
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1rem;
+  color: var(--color-p1);
+  font-family: Arial, sans-serif;
+}
+
+p.pequeno {
+  font-size: 12px;
+  color: var(--color-p2);
+  font-family: 'Nerko One', cursive;
+}
+
+a {
+  color: var(--color-link);
+  font-weight: bold;
+  text-decoration: none;
+}
+a:visited { color: var(--color-link-visited); }
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid #333;
+  padding: 6px 10px;
+}
+th {
+  background-color: var(--color-th-bg);
+  color: var(--color-th-texto);
+  font-size: 1.5rem;
+}
+tbody tr {
+  font-size: 1.5rem;
+}
+tbody tr:nth-child(odd) {
+  background-color: var(--color-fila-clara);
+  color: #000000;
+}
+tbody tr:nth-child(2) {
+  background-color: var(--color-fila-central);
+  color: #ffffff;
+}
