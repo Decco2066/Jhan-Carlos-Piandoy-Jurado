@@ -1,0 +1,323 @@
+<p-confirmdialog />
+
+<main class="users-page">
+  <header class="topbar">
+    <a class="brand" routerLink="/usuarios" aria-label="Gestión hospitalaria">
+      <i class="pi pi-heart-fill" aria-hidden="true"></i>
+      <span>Gestión hospitalaria</span>
+    </a>
+
+    <div class="session">
+      <div class="session-user">
+        <span class="user-name">{{ usuarioActual?.nombre }} {{ usuarioActual?.apellido }}</span>
+        <span class="user-role">{{ usuarioActual?.cargo ?? 'Sesión activa' }}</span>
+      </div>
+      <p-button
+        label="Cerrar sesión"
+        icon="pi pi-sign-out"
+        severity="secondary"
+        [outlined]="true"
+        (onClick)="cerrarSesion()"
+      />
+    </div>
+  </header>
+
+  <section class="content">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">Administración</p>
+        <h1>Usuarios</h1>
+        <p class="subtitle">Crea, consulta y administra las cuentas del personal.</p>
+      </div>
+      <p-button
+        label="Nuevo usuario"
+        icon="pi pi-plus"
+        (onClick)="abrirNuevoUsuario()"
+      />
+    </div>
+
+    @if (!dialogVisible() && errorMessage(); as error) {
+      <div class="page-error" role="alert">
+        <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+        <span>{{ error }}</span>
+      </div>
+    }
+
+    <section class="table-card" aria-label="Lista de usuarios">
+      <p-table
+        #tabla
+        [value]="usuarios()"
+        dataKey="id"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [loading]="loading()"
+        [globalFilterFields]="[
+          'identificacion',
+          'nombre',
+          'apellido',
+          'email',
+          'cargo',
+          'telefono',
+          'nombre_usuario'
+        ]"
+        sortMode="multiple"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} usuarios"
+        [tableStyle]="{ 'min-width': '68rem' }"
+        responsiveLayout="scroll"
+      >
+        <ng-template #caption>
+          <div class="table-toolbar">
+            <div>
+              <h2>Personal registrado</h2>
+              <p>Administra los datos y el acceso de cada usuario.</p>
+            </div>
+            <div class="table-tools">
+              <label class="search-box">
+                <i class="pi pi-search" aria-hidden="true"></i>
+                <input
+                  pInputText
+                  type="search"
+                  placeholder="Buscar usuario"
+                  aria-label="Buscar usuarios"
+                  (input)="filtrar($event, tabla)"
+                />
+              </label>
+              <p-button
+                icon="pi pi-refresh"
+                severity="secondary"
+                [outlined]="true"
+                ariaLabel="Actualizar lista"
+                (onClick)="cargarUsuarios(true)"
+              />
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="identificacion">
+              Identificación <p-sort-icon field="identificacion" />
+            </th>
+            <th pSortableColumn="nombre">
+              Nombre <p-sort-icon field="nombre" />
+            </th>
+            <th pSortableColumn="email">
+              Email <p-sort-icon field="email" />
+            </th>
+            <th pSortableColumn="cargo">
+              Cargo <p-sort-icon field="cargo" />
+            </th>
+            <th pSortableColumn="telefono">
+              Teléfono <p-sort-icon field="telefono" />
+            </th>
+            <th pSortableColumn="nombre_usuario">
+              Usuario <p-sort-icon field="nombre_usuario" />
+            </th>
+            <th>Estado</th>
+            <th class="actions-heading">Acciones</th>
+          </tr>
+        </ng-template>
+
+        <ng-template #body let-usuario>
+          <tr>
+            <td>{{ usuario.identificacion }}</td>
+            <td>
+              <span class="person-name">{{ usuario.nombre }} {{ usuario.apellido }}</span>
+            </td>
+            <td>{{ usuario.email || '—' }}</td>
+            <td>{{ usuario.cargo }}</td>
+            <td>{{ usuario.telefono || '—' }}</td>
+            <td>{{ usuario.nombre_usuario }}</td>
+            <td>
+              <div class="state-control">
+                <p-tag
+                  [value]="usuario.estado"
+                  [severity]="severidadEstado(usuario.estado)"
+                />
+                <p-toggleswitch
+                  [ngModel]="usuario.estado === 'Activado'"
+                  [ngModelOptions]="{ standalone: true }"
+                  [disabled]="estadosPendientes().has(usuario.id)"
+                  [ariaLabel]="'Cambiar estado de ' + usuario.nombre"
+                  (onChange)="alternarEstado(usuario)"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="row-actions">
+                <p-button
+                  icon="pi pi-pencil"
+                  severity="secondary"
+                  [text]="true"
+                  [rounded]="true"
+                  [ariaLabel]="'Editar a ' + usuario.nombre"
+                  (onClick)="abrirEdicion(usuario)"
+                />
+                <p-button
+                  icon="pi pi-trash"
+                  severity="danger"
+                  [text]="true"
+                  [rounded]="true"
+                  [ariaLabel]="'Eliminar a ' + usuario.nombre"
+                  (onClick)="confirmarEliminacion(usuario)"
+                />
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="8" class="empty-state">
+              No hay usuarios para mostrar.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </section>
+  </section>
+</main>
+
+<p-dialog
+  [visible]="dialogVisible()"
+  (visibleChange)="cambioVisibilidadDialogo($event)"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [header]="tituloDialogo()"
+  [style]="{ width: 'min(48rem, 96vw)' }"
+  [breakpoints]="{ '640px': '96vw' }"
+>
+  <p class="dialog-description">
+    Completa los datos del usuario. La contraseña no se muestra en la tabla.
+  </p>
+
+  @if (errorMessage(); as error) {
+    <div class="dialog-error" role="alert">
+      <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+      <span>{{ error }}</span>
+    </div>
+  }
+
+  <form class="user-form" [formGroup]="form" (ngSubmit)="guardarUsuario()">
+    <div class="form-field">
+      <label for="identificacion">Identificación</label>
+      <input id="identificacion" pInputText formControlName="identificacion" autocomplete="off" />
+      @if (form.controls.identificacion.touched && form.controls.identificacion.invalid) {
+        <small class="field-error">La identificación es obligatoria.</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" pInputText formControlName="nombre" autocomplete="given-name" />
+      @if (form.controls.nombre.touched && form.controls.nombre.invalid) {
+        <small class="field-error">El nombre es obligatorio.</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="apellido">Apellido</label>
+      <input id="apellido" pInputText formControlName="apellido" autocomplete="family-name" />
+      @if (form.controls.apellido.touched && form.controls.apellido.invalid) {
+        <small class="field-error">El apellido es obligatorio.</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input id="email" pInputText type="email" formControlName="email" autocomplete="email" />
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <small class="field-error">Ingresa un email válido.</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="cargo">Cargo</label>
+      <p-select
+        inputId="cargo"
+        formControlName="cargo"
+        [options]="cargos"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Selecciona un cargo"
+      />
+      @if (form.controls.cargo.touched && form.controls.cargo.invalid) {
+        <small class="field-error">Selecciona un cargo.</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="telefono">Teléfono</label>
+      <input
+        id="telefono"
+        pInputText
+        type="tel"
+        formControlName="telefono"
+        inputmode="numeric"
+        autocomplete="tel"
+      />
+      @if (form.controls.telefono.touched && form.controls.telefono.invalid) {
+        <small class="field-error">Ingresa un teléfono usando solo números.</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="nombre_usuario">Nombre de usuario</label>
+      <input
+        id="nombre_usuario"
+        pInputText
+        formControlName="nombre_usuario"
+        autocomplete="username"
+      />
+      @if (form.controls.nombre_usuario.touched && form.controls.nombre_usuario.invalid) {
+        <small class="field-error">El nombre de usuario es obligatorio.</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="contrasena">
+        Contraseña
+        @if (usuarioEditando()) {
+          <span class="optional-note">(opcional)</span>
+        }
+      </label>
+      <p-password
+        inputId="contrasena"
+        formControlName="contrasena"
+        [feedback]="false"
+        [toggleMask]="true"
+        autocomplete="new-password"
+        placeholder="Mínimo 8 caracteres"
+        fluid
+      />
+      @if (form.controls.contrasena.touched && form.controls.contrasena.invalid) {
+        <small class="field-error">
+          @if (form.controls.contrasena.hasError('required')) {
+            La contraseña es obligatoria.
+          } @else {
+            La contraseña debe tener al menos 8 caracteres.
+          }
+        </small>
+      }
+    </div>
+
+    <div class="dialog-actions">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        [outlined]="true"
+        type="button"
+        (onClick)="cerrarDialogo()"
+      />
+      <p-button
+        [label]="usuarioEditando() ? 'Guardar cambios' : 'Crear usuario'"
+        icon="pi pi-check"
+        type="submit"
+        [loading]="saving()"
+      />
+    </div>
+  </form>
+</p-dialog>

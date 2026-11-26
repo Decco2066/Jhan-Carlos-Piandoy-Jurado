@@ -1,0 +1,64 @@
+<main class="login-page">
+  <p-card class="login-card">
+    <div class="brand-mark" aria-hidden="true">
+      <i class="pi pi-heart-fill"></i>
+    </div>
+    <p class="eyebrow">PORTAL DEL HOSPITAL</p>
+    <h1>Bienvenido</h1>
+    <p class="subtitle">Ingresa con tu identificación y contraseña.</p>
+
+    <form [formGroup]="form" (ngSubmit)="iniciarSesion()">
+      <div class="form-field">
+        <label for="identificacion">Identificación</label>
+        <input
+          id="identificacion"
+          pInputText
+          formControlName="identificacion"
+          autocomplete="username"
+          placeholder="Tu número de identificación"
+          [fluid]="true"
+          [invalid]="form.controls.identificacion.touched && form.controls.identificacion.invalid"
+        />
+        @if (form.controls.identificacion.touched && form.controls.identificacion.invalid) {
+          <small class="field-error">La identificación es obligatoria.</small>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="contrasena">Contraseña</label>
+        <p-password
+          inputId="contrasena"
+          formControlName="contrasena"
+          autocomplete="current-password"
+          placeholder="Tu contraseña"
+          [toggleMask]="true"
+          [feedback]="false"
+          [fluid]="true"
+          [invalid]="form.controls.contrasena.touched && form.controls.contrasena.invalid"
+        />
+        @if (form.controls.contrasena.touched && form.controls.contrasena.invalid) {
+          <small class="field-error">La contraseña es obligatoria.</small>
+        }
+      </div>
+
+      @if (errorMessage()) {
+        <p-message severity="error" role="alert">{{ errorMessage() }}</p-message>
+      }
+
+      <p-button
+        label="Iniciar sesión"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        type="submit"
+        [disabled]="form.invalid || loading()"
+        [loading]="loading()"
+        [fluid]="true"
+      />
+    </form>
+
+    <p class="form-footer">
+      ¿No tienes cuenta?
+      <a routerLink="/registro">Regístrate</a>
+    </p>
+  </p-card>
+</main>

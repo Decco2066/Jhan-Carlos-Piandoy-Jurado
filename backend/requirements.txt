@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pymysql
+passlib[bcrypt]
+bcrypt<4.1
+pydantic[email]
+python-dotenv
+python-jose[cryptography]

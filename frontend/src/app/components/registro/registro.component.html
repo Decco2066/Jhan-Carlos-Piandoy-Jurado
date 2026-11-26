@@ -1,0 +1,178 @@
+<main class="auth-page">
+  <section class="auth-card" aria-labelledby="register-title">
+    <div class="brand-mark" aria-hidden="true">
+      <i class="pi pi-user-plus"></i>
+    </div>
+    <p class="eyebrow">PORTAL DEL HOSPITAL</p>
+    <h1 id="register-title">Crear cuenta</h1>
+    <p class="subtitle">Registra tus datos para acceder al sistema.</p>
+
+    <form [formGroup]="form" (ngSubmit)="registrar()">
+      <div class="form-grid">
+        <div class="field">
+          <label for="identificacion">Identificación</label>
+          <input
+            id="identificacion"
+            pInputText
+            formControlName="identificacion"
+            autocomplete="off"
+            [fluid]="true"
+            [invalid]="form.controls.identificacion.touched && form.controls.identificacion.invalid"
+          />
+          @if (form.controls.identificacion.touched && form.controls.identificacion.errors?.['required']) {
+            <small class="field-error">La identificación es obligatoria.</small>
+          } @else if (form.controls.identificacion.touched && form.controls.identificacion.errors?.['maxlength']) {
+            <small class="field-error">Usa máximo 30 caracteres.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="cargo">Cargo</label>
+          <p-select
+            inputId="cargo"
+            formControlName="cargo"
+            [options]="cargos"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Selecciona tu cargo"
+            [fluid]="true"
+          />
+          @if (form.controls.cargo.touched && form.controls.cargo.invalid) {
+            <small class="field-error">Selecciona un cargo.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input
+            id="nombre"
+            pInputText
+            formControlName="nombre"
+            autocomplete="given-name"
+            [fluid]="true"
+            [invalid]="form.controls.nombre.touched && form.controls.nombre.invalid"
+          />
+          @if (form.controls.nombre.touched && form.controls.nombre.errors?.['required']) {
+            <small class="field-error">El nombre es obligatorio.</small>
+          } @else if (form.controls.nombre.touched && form.controls.nombre.errors?.['maxlength']) {
+            <small class="field-error">Usa máximo 100 caracteres.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="apellido">Apellido</label>
+          <input
+            id="apellido"
+            pInputText
+            formControlName="apellido"
+            autocomplete="family-name"
+            [fluid]="true"
+            [invalid]="form.controls.apellido.touched && form.controls.apellido.invalid"
+          />
+          @if (form.controls.apellido.touched && form.controls.apellido.errors?.['required']) {
+            <small class="field-error">El apellido es obligatorio.</small>
+          } @else if (form.controls.apellido.touched && form.controls.apellido.errors?.['maxlength']) {
+            <small class="field-error">Usa máximo 100 caracteres.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            pInputText
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            [fluid]="true"
+            [invalid]="form.controls.email.touched && form.controls.email.invalid"
+          />
+          @if (form.controls.email.touched && form.controls.email.errors?.['required']) {
+            <small class="field-error">El email es obligatorio.</small>
+          } @else if (form.controls.email.touched && form.controls.email.errors?.['email']) {
+            <small class="field-error">Ingresa un email con formato válido.</small>
+          } @else if (form.controls.email.touched && form.controls.email.errors?.['maxlength']) {
+            <small class="field-error">Usa máximo 254 caracteres.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="telefono">Teléfono</label>
+          <input
+            id="telefono"
+            pInputText
+            type="tel"
+            inputmode="numeric"
+            formControlName="telefono"
+            autocomplete="tel"
+            [fluid]="true"
+            [invalid]="form.controls.telefono.touched && form.controls.telefono.invalid"
+          />
+          @if (form.controls.telefono.touched && form.controls.telefono.errors?.['required']) {
+            <small class="field-error">El teléfono es obligatorio.</small>
+          } @else if (form.controls.telefono.touched && form.controls.telefono.errors?.['pattern']) {
+            <small class="field-error">El teléfono solo debe contener números.</small>
+          } @else if (form.controls.telefono.touched && form.controls.telefono.errors?.['maxlength']) {
+            <small class="field-error">Usa máximo 20 dígitos.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="nombre_usuario">Nombre de usuario</label>
+          <input
+            id="nombre_usuario"
+            pInputText
+            formControlName="nombre_usuario"
+            autocomplete="username"
+            [fluid]="true"
+            [invalid]="form.controls.nombre_usuario.touched && form.controls.nombre_usuario.invalid"
+          />
+          @if (form.controls.nombre_usuario.touched && form.controls.nombre_usuario.errors?.['required']) {
+            <small class="field-error">El nombre de usuario es obligatorio.</small>
+          } @else if (form.controls.nombre_usuario.touched && form.controls.nombre_usuario.errors?.['maxlength']) {
+            <small class="field-error">Usa máximo 50 caracteres.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="contrasena">Contraseña</label>
+          <p-password
+            inputId="contrasena"
+            formControlName="contrasena"
+            autocomplete="new-password"
+            placeholder="Mínimo 8 caracteres"
+            [toggleMask]="true"
+            [feedback]="false"
+            [fluid]="true"
+            [invalid]="form.controls.contrasena.touched && form.controls.contrasena.invalid"
+          />
+          @if (form.controls.contrasena.touched && form.controls.contrasena.errors?.['required']) {
+            <small class="field-error">La contraseña es obligatoria.</small>
+          } @else if (form.controls.contrasena.touched && form.controls.contrasena.errors?.['minlength']) {
+            <small class="field-error">La contraseña debe tener al menos 8 caracteres.</small>
+          } @else if (form.controls.contrasena.touched && form.controls.contrasena.errors?.['maxlength']) {
+            <small class="field-error">Usa máximo 255 caracteres.</small>
+          }
+        </div>
+      </div>
+
+      @if (errorMessage(); as error) {
+        <p-message class="form-error" severity="error" role="alert">{{ error }}</p-message>
+      }
+
+      <p-button
+        label="Crear cuenta"
+        icon="pi pi-user-plus"
+        type="submit"
+        [disabled]="loading()"
+        [loading]="loading()"
+        [fluid]="true"
+      />
+    </form>
+
+    <p class="form-footer">
+      ¿Ya tienes cuenta?
+      <a routerLink="/login">Volver a iniciar sesión</a>
+    </p>
+  </section>
+</main>

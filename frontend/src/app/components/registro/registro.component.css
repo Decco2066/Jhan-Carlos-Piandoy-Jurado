@@ -1,0 +1,107 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.auth-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(circle at 15% 15%, rgb(20 184 166 / 12%), transparent 32rem),
+    var(--surface-ground);
+}
+
+.auth-card {
+  width: min(100%, 48rem);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  border: 1px solid var(--surface-border);
+  border-radius: 1.25rem;
+  background: var(--surface-card);
+  box-shadow: 0 1.5rem 4rem rgb(15 23 42 / 9%);
+}
+
+.brand-mark {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.25rem;
+  place-items: center;
+  border-radius: 1rem;
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 12%, white);
+  font-size: 1.25rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--text-color-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+h1 {
+  margin: 0;
+  color: var(--text-color);
+  font-size: clamp(1.8rem, 5vw, 2.25rem);
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  margin: 0.6rem 0 1.75rem;
+  color: var(--text-color-secondary);
+  line-height: 1.6;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.field {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+}
+
+label {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field-error {
+  color: var(--red-600);
+  font-size: 0.82rem;
+}
+
+.form-error {
+  display: block;
+  margin: 1rem 0;
+}
+
+.form-footer {
+  margin: 1.5rem 0 0;
+  color: var(--text-color-secondary);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
